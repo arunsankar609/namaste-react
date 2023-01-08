@@ -1,0 +1,60 @@
+#container {
+  background-color: rgb(197, 227, 227);
+  width: 100%;
+  height: 100vh;
+  border-radius: 25;
+  
+
+}
+#head1 {
+  color: blue;
+  display: flex;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  justify-content: center;
+}
+#heading1{
+  
+  display: flex;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 200;
+}
+#head2 {
+  color: brown;
+}
+.header{
+  width: 100%;
+  height: 10%;
+  background-color: rgb(141, 199, 141);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logo{
+ 
+  
+  cursor: pointer;
+  height: 45px;
+  padding: 1px;
+
+}
+.searchbar{
+  padding-top: 9px;
+
+}
+.input-txt{
+  border-radius: 10px;
+ width: 200%;
+
+ height: 21px;
+ cursor: pointer;
+}
+.user-icon{
+  height: 35px;
+  
+}
+.userIcon{
+  padding: 5px;
+  cursor: pointer;
+  
+}

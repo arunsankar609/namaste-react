@@ -125,3 +125,11 @@ grid-gap: .2rem;
   padding-left: 4px;
   border-radius: 15px;
 }
+.footer{
+  background-color: rgb(17, 23, 23);
+  height: 10px;
+  padding: 10px;
+  align-content: center;
+  text-align: center;
+  color: aliceblue;
+}

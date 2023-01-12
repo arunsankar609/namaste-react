@@ -1,60 +1,70 @@
 import { useState } from "react";
 import { resturantCard } from "../configs/config";
-import { IMG_URL } from "../configs/config";
 
-const RestCard = (props) => {
-  return (
-    <div className="card">
-      <img
-        className="cardImg"
-        src={IMG_URL + props.restaurant.data?.cloudinaryImageId}
-        alt="cardImage"
-      />
-      <h2>{props.restaurant.data?.name}</h2>
-      <h3>{props.restaurant.data?.cuisines.join(",")}</h3>
-      <h4 className="rating">Rating {props.restaurant.data?.avgRating}</h4>
-    </div>
-  );
-};
+import RestCard from "./ResturantCard";
+
 const Body = () => {
-  const [searchText, setsearchText] = useState(" ");
-  const [restaurantD, setRestaurantData] = useState(resturantCard);
- 
-  
-console.log(searchText);
-  
+  const [restaurantData, setRestaurantData] = useState(resturantCard);
+  const [searchText, setsearchText] = useState("");
 
-  const filterData=(restaurantD,searchText)=>{
-    console.log("cscscs",restaurantD);
-    const filteredResturant= restaurantD?.filter((resturant)=>
-      resturant.data.name===searchText
-      
-    )
-    console.log("what the fuck",filteredResturant);
-    return filteredResturant
+  console.log(searchText);
+
+  const filterData = () => {
+    console.log("cscscs", restaurantData);
+    console.log("xxxxx", searchText);
+    if(searchText===""||null)
+      return resturantCard
+    
    
-    // setRestaurantData(filteredResturant)
-  }
+    const filteredResturant = restaurantData.filter((resturant) =>
+      resturant.data.name
+        .toLowerCase()
+        .trim()
+        .includes(searchText.toLowerCase().trim())
+    );
+
+    console.log("what the fuck", filteredResturant);
+    return filteredResturant;
+
+  };
+  // const onchangeFilter=()=>{
+  //   if (searchText === " " || null||"undefined") {
+  //     setRestaurantData(" ")
+  //     return setRestaurantData(resturantCard);
+  //   }
+ 
+  // }
 
   return (
     <>
       <div className="searchbar">
+        
         <input
           className="input-txt"
           type="text"
           placeholder="search your favourites..."
           value={searchText}
-          onChange={(e)=>{setsearchText(e.target.value)}}
+          onChange={(e) => {
+            setsearchText(e.target.value);
+            const data = filterData();
+            setRestaurantData(data);
+          }}
         />
-        <button className="search-btn" onClick={()=>{
-           const Data= filterData(restaurantD,searchText)
-           setRestaurantData(Data);
-        }} >Search</button>
+        <button
+          className="search-btn"
+          onClick={() => {
+            const data = filterData();
+            setRestaurantData(data);
+          }}
+        >
+          Search
+        </button>
+       
       </div>
 
       <div className="bodyCard">
-        {restaurantD?.map((resturant) => {
-          return <RestCard restaurant={resturant} key={resturant.data.id} />;
+        {restaurantData?.map((hotel) => {
+          return <RestCard restaurant={hotel} key={hotel.data.id} />;
         })}
       </div>
     </>

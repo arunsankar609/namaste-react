@@ -62,9 +62,13 @@ justify-content: center;
   
 }
 .userIcon{
-  padding: 20px;
+  display: flex;
+  flex-direction: row;
+justify-items: auto;
+justify-content: space-around;
+padding: 10px;
   padding-top: 10px;
-  padding-right: 20px;
+  padding-right: 40px;
   cursor: pointer;
   
 }
@@ -105,9 +109,10 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 .bodyCard{
 
   display: grid;
-  place-items:  center;
+  
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 grid-gap: .2rem;
+height: 100%;
 
 }
 .rating{
@@ -132,4 +137,48 @@ grid-gap: .2rem;
   align-content: center;
   text-align: center;
   color: aliceblue;
+}
+.fitCard{
+
+block-size: fit-content;
+width: fit-content;
+object-fit: cover;
+
+}
+.shimmer{
+  color: aliceblue;
+}
+.shimmer-d{
+  width: 250px;
+  height: 300px;
+  background-color: #5b5f5f;
+  text-align: center;
+}
+.No-resturants{
+color: aliceblue;
+text-align: center;
+background-color: #1f2525;
+width: 100%;
+height: 100vh;
+
+}
+.log-btn{
+padding: 10px;
+
+margin-left: 10px;
+margin-top: 10px;
+border-radius: 15px;
+background-color: green;
+border-color: aliceblue;
+color: aliceblue;
+height: 40px;
+
+text-align: center;
+}
+.logged-user{
+  color: aliceblue;
+}
+.Rdetails{
+  color: aliceblue;
+  display: flex;
 }

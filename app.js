@@ -10,6 +10,9 @@ import About from "./components/About";
 import ErrorPage from "./components/ErrorPage";
 import Contact from "./components/Contactus";
 import ResturantDetails from "./components/ResturantDetails";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import ProfileClass from "./components/ProfileClass";
 
 const Appon1 = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,6 +38,13 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children:[
+          {
+            path:"profile",
+            element:<ProfileClass/>
+
+          }
+        ]
       },
       {
         path: "/contact",
@@ -47,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: "/restaurants/:id",
         element: <ResturantDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ]
   }

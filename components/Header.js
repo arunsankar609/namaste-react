@@ -12,8 +12,9 @@ const Headert = (props) => {
 
       <div className="nav-items">
         <ul>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li><Link to="/home" className="link">Home</Link></li>
+          <li><Link to="/about" className="link">About</Link></li>
+          <li><Link to="/contact" className="link">contactus</Link></li>
           <li>Offers</li>
           <li>Cart</li>
         </ul>
@@ -27,9 +28,9 @@ const Headert = (props) => {
         </div>
       ) : (
         <div className="userIcon">
-          <button className="log-btn" onClick={() => props.updateState(true)}>
+       <Link to="/login">  <button className="log-btn" onClick={() => props.updateState(true)}>
             Log In
-          </button>
+          </button></Link> 
         </div>
       )}
     </div>

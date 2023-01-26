@@ -1,4 +1,4 @@
 const Contact=()=>{
-return <div>This is contact page</div>
+return <div><h1 className="head12">Contact us</h1></div>
 }
 export default Contact

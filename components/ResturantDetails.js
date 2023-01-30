@@ -3,24 +3,16 @@ import React, { useEffect, useState } from "react";
 import { IMG_URL } from "../configs/config";
 import axios from "axios";
 import Shimmer from "./Shimmer";
+import useResturant from "../utils/useResturants";
 
 const ResturantDetails = () => {
   const params = useParams();
-  const [restaurantData, setRestaurantData] = useState(null);
-  console.log(params);
-  const Data = async () => {
-    const restaurant = await axios.get(
-      "https://www.swiggy.com/dapi/menu/v4/full?lat=10.598759170871096&lng=76.14204525947571&menuId="+params.id
-    );
-    console.log(restaurant);
-    setRestaurantData(restaurant?.data);
-  };
 
-  useEffect(() => {
-    Data();
-  }, []);
-  if(!restaurantData){
-    return <Shimmer/>
+  console.log(params);
+  const restaurantData = useResturant(params.id);
+  console.log("zxzxzxczx", restaurantData);
+  if (!restaurantData) {
+    return <Shimmer />;
   }
   return (
     <div className="Rdetails">

@@ -15,6 +15,7 @@ const Headert = (props) => {
           <li><Link to="/home" className="link">Home</Link></li>
           <li><Link to="/about" className="link">About</Link></li>
           <li><Link to="/contact" className="link">contactus</Link></li>
+          <li><Link to="/instamart" className="link">Instamart</Link></li>
           <li>Offers</li>
           <li>Cart</li>
         </ul>

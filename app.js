@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -13,6 +13,10 @@ import ResturantDetails from "./components/ResturantDetails";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import ProfileClass from "./components/ProfileClass";
+import Shimmer from "./components/Shimmer";
+
+const Instamart = lazy(() =>import( "./components/Instamart"));
+
 
 const Appon1 = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,8 +33,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Appon1 />,
-    errorElement:<ErrorPage/>,
-    children:[
+    errorElement: <ErrorPage />,
+    children: [
       {
         path: "/",
         element: <Body />,
@@ -38,13 +42,12 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
-        children:[
+        children: [
           {
-            path:"profile",
-            element:<ProfileClass/>
-
-          }
-        ]
+            path: "profile",
+            element: <ProfileClass />,
+          },
+        ],
       },
       {
         path: "/contact",
@@ -66,10 +69,16 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-    ]
-  }
- 
- 
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
+      },
+    ],
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

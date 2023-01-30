@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { resturantCard } from "../configs/config";
+import {filterData} from "../utils/helper"
+import useOnline from "../utils/useOnline";
 import RestCard from "./ResturantCard";
 import Shimmer from "./Shimmer";
 const Body = () => {
@@ -8,33 +10,25 @@ const Body = () => {
   const [filteredHotel, setFilteredHotel] = useState([]);
   const [searchText, setsearchText] = useState(" ");
 
-  console.log(searchText);
   useEffect(() => {
     getHotelData();
   }, []);
 
-  const getHotelData = async () => {
+
+ async function getHotelData () {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.5280179&lng=76.2147772&page_type=DESKTOP_WEB_LISTING"
     );
-    const jsonAkkan = await data.json();
-    // console.log("axios vaxhi", jsonAkkan.data.cards[2].data.data.cards);
+    const jsonAkkan = await data?.json();
     setRestaurantData(jsonAkkan?.data.cards[2]?.data?.data?.cards);
     setFilteredHotel(jsonAkkan?.data.cards[2]?.data?.data?.cards);
   };
-  const filterData = () => {
-    const filteredResturant = restaurantData.filter((resturant) =>
-      resturant.data.name
-        .toLowerCase()
-        .trim()
-        .includes(searchText.toLowerCase().trim())
-    );
+  const isOnline=useOnline()
+ 
+if(!isOnline){
+  return <h2>offline! Please check your network connection</h2>
+}
 
-    console.log("what the fuck", filteredResturant);
-    return filteredResturant;
-  };
-
-  console.log("resturantdataaa", filteredHotel);
 
   return (
     <>
@@ -46,14 +40,15 @@ const Body = () => {
           value={searchText}
           onChange={(e) => {
             setsearchText(e.target.value);
-            const data = filterData();
+            const data = filterData(searchText,restaurantData);
             setFilteredHotel(data);
           }}
         />
         <button
           className="search-btn"
           onClick={() => {
-            const data = filterData();
+            console.log("zxzxc",restaurantData);
+            const data = filterData(searchText,restaurantData);
             setFilteredHotel(data);
           }}
         >
@@ -67,13 +62,13 @@ const Body = () => {
         </div>
       ) : (
         <div className="bodyCard">
-          {filteredHotel.length === 0 ? (
+          {filteredHotel?.length === 0 ? (
             <h1 className="No-resturants">No Resturants Found!</h1>
           ) : (
             filteredHotel?.map((hotel) => {
               return (
-                <Link to={"/restaurants/"+hotel.data.id} className="link">
-                  <RestCard restaurant={hotel} key={hotel.data.id} />
+                <Link to={"/restaurants/" + hotel.data.id} className="link" key={hotel.data.id}>
+                  <RestCard  restaurant={hotel}  />
                 </Link>
               );
             })

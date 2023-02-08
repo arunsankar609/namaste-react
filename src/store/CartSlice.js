@@ -13,8 +13,10 @@ const CartSlice = createSlice({
       state.items=[]
     },
     deleteItem:(state,action)=>{
-   const ogItems= state.items?.filter((item)=>item.id!==action.payload)
-   return ogItems
+    return {
+      ...state,
+      items: [...state.items].filter((items) => items.id!==action.payload)
+   };
     },
   },
 });

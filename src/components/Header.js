@@ -65,9 +65,7 @@ const Headert = (props) => {
         </div>
       ) : (
         <div className="pl-2 ">
-          <div>
-            <span className="text-white">{user.user.name}</span>
-          </div>
+         
           <Link to="/login">
             {" "}
             <button

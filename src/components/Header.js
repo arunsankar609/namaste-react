@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 
-import { useContext } from "react";
-import userContext from "../utils/userContext";
 import { useSelector } from "react-redux";
 
 const Headert = (props) => {
   const Cart = useSelector((store) => store.cart.items);
-  const user = useContext(userContext);
+  
   return (
     <div className="md:flex md:justify-between  md:bg-slate-600 bg-orange-400 shadow-lg">
       <div className="">
         <img
+        data-testId="logo"
           className="h-20 p-3  "
           src="https://www.shutterstock.com/image-vector/food-logo-smile-label-company-260nw-1271590297.jpg"
           alt=""
